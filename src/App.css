@@ -1,0 +1,13 @@
+.App {
+   text-align: center;
+}
+
+body {
+   background-image: url(https://media.tenor.com/oC_e7R9GvZ8AAAAC/rick-and-morty-rtj.gif);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment: scroll;
+   background-attachment: fixed;
+ 
+
+}
