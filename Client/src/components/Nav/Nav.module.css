@@ -1,0 +1,25 @@
+nav{
+    background-color: rgb(6, 117, 71);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30 px;
+    margin-bottom: 20px;
+
+}
+
+.links{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(38, 69, 153);
+    padding: 10px;
+    margin: 0px 15px;
+}
+.links:hover{
+    color: aliceblue;
+    background-color: rgb(238, 130, 238, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+}
