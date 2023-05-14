@@ -1,21 +1,24 @@
-import {ADD_FAVORITE, REMOVE_FAVORITE } from "../redux/actions";
+import { ADD_FAV, REMOVE_FAV } from "./actions";
 
 const initialState = {
-    myFavorites:[],
+  myFavorites: [],
+  allcharacters:[]
 };
-const rootReducer = (state= initialState, action) => {
-        switch (action.type) {
-          case ADD_FAVORITE:
-            return { ...state, myFavorites: payload, allCharacters: payload };
-              case REMOVE_FAVORITE:
-                return{
-                    ...state,
-                    myFavorites: state.myFavorites.filter(character => character.id !== action.payload.id)
-                }
-                default:
-                    return state;
-    }
-
-}
-
+const rootReducer = (state = initialState, {type,payload}) => {
+  switch (type) {
+    case ADD_FAV:
+      return {
+        ...state,
+        myFavorites: payload, 
+        allcharacters: payload
+      };
+    case REMOVE_FAV:
+      return {
+        ...state,
+      myFavorites: payload
+      };
+    default:
+      return state;
+  }
+};
 export default rootReducer;

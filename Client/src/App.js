@@ -21,10 +21,11 @@ function App() {
   };
 
   function onSearch(id) {
+  
     fetch(`http://localhost:3001/rickandmorty/character/${id}`)
       .then((response) => response.json())
-      .then((data) => {
-        if (data.name) {
+      .then((data) => { 
+        if (data.name)  {console.log(data.name)
           characters.find((element) => element.id === data.id) === undefined
             ? setCharacters((characters) => [...characters, data])
             : alert("Personaje repetido, proba otro");
@@ -40,13 +41,14 @@ function App() {
 
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const username = 'ejemplo@gmail.com';
-  const password = '1password';
+ 
 
   function login(userData) {
-    const { email, password } = userData;
+  
+    const { username, password } = userData;
+    
     const URL = 'http://localhost:3001/rickandmorty/login/';
-    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+    axios(URL + `?email=${username}&password=${password}`).then(({ data }) => {
        const { access } = data;
        setAccess(data);
        access && navigate('/home');

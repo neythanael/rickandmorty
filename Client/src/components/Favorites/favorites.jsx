@@ -5,18 +5,24 @@ import './favorites.css';
 
 
 const Favorites = ({ myFavorites }) => {
-  return (
+  return( 
     <div className="favorites-container">
       <h1>My Favorites</h1>
-      <div className="favorites-list">
-        {myFavorites.map((character) => (
-          <Card 
-          key={character.id}
-          character={character} />
-        ))}
-      </div>
+    
+      <div>
+            {myFavorites?.map(({id, name, species, gender, image})=>(
+                <Card
+                id={id}
+                key={id}
+                name={name}
+                species={species}
+                gender={gender}
+                image={image}
+                />
+            ))}
+        </div>
     </div>
-  );
+  )
 };
 
 const mapStateToProps = (state) => {
@@ -24,5 +30,6 @@ const mapStateToProps = (state) => {
     myFavorites: state.myFavorites,
   };
 };
+
 
 export default connect(mapStateToProps, null)(Favorites);

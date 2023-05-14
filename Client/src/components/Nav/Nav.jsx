@@ -10,7 +10,7 @@ export default function Nav (props) {
             
              <Link to="/home" className={style.links}>Home</Link>
              <Link to="/about" className={style.links}>About</Link>
-            <button onClick={props.logout} className={style.links}>Logout</button>
+            <Link onClick={props.logout} className={style.links}>Logout</Link>
             <SearchBar onSearch={props.onSearch} random={props.random}/>
             <Link to="/favorites" className={style.links}>Favorites</Link>
         </nav>
