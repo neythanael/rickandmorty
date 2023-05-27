@@ -20,19 +20,23 @@ function App() {
     setCharacters(characters.filter(char => char.id !== id))
   };
 
-  function onSearch(id) {
-  
-    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then((response) => response.json())
-      .then((data) => { 
-        if (data.name)  {console.log(data.name)
-          characters.find((element) => element.id === data.id) === undefined
-            ? setCharacters((characters) => [...characters, data])
-            : alert("Personaje repetido, proba otro");
+  async function onSearch(id) {
+    try {
+      const response = await fetch(`http://localhost:3001/rickandmorty/character/${id}`);
+      const data = await response.json();
+      if (data.name) {
+        console.log(data.name);
+        if (characters.find((element) => element.id === data.id) === undefined) {
+          setCharacters((characters) => [...characters, data]);
         } else {
-          window.alert('No hay personajes con ese ID');
+          alert("Personaje repetido, prueba otro");
         }
-      });
+      } else {
+        window.alert('No hay personajes con ese ID');
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   }
   function random() {
     let randomId = Math.floor(Math.random() * 826)
@@ -43,17 +47,19 @@ function App() {
   const [access, setAccess] = useState(false);
  
 
-  function login(userData) {
+  async function login(userData) {
+    try {
+      const { username, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      const response = await axios.get(`${URL}?email=${username}&password=${password}`);
+      const { access } = response.data;
+      setAccess(response.data);
+      access && navigate('/home');
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  }
   
-    const { username, password } = userData;
-    
-    const URL = 'http://localhost:3001/rickandmorty/login/';
-    axios(URL + `?email=${username}&password=${password}`).then(({ data }) => {
-       const { access } = data;
-       setAccess(data);
-       access && navigate('/home');
-    });
- }
 
    useEffect(() => {
     !access && navigate('/');

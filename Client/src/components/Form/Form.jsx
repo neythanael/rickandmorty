@@ -1,4 +1,4 @@
-import modules from './Form.module.css'
+
 import React from "react";
 import validate from "./validation.js"
 
@@ -29,7 +29,7 @@ export default function Form(props){
         
     <div>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="">username</label>
+            <label htmlFor="username">username</label>
             <input type="text" name="username" value={userData.username} onChange={handleInputChange} />
             <p>{errors.username}</p>
             <label htmlFor="">password</label>

@@ -3,12 +3,14 @@
 const express = require('express');
 const server = express();
 const PORT = 3001;
-const router = require ("../src/routes/index")
+const saveApiData = require('./controllers/saveApiData.js');
+const {sequelize,} = require('./DB_connection')
+const router = require ("../src/routes/index.js")
 
 server.use(express.json())
-server.listen(PORT, () => {
-   console.log('Server raised in port: ' + PORT);
-});
+//server.listen(PORT, () => {
+  // console.log('Server raised in port: ' + PORT);
+//});
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -22,8 +24,15 @@ server.use((req, res, next) => {
   );
   next();
 });
-
+ sequelize.sync({force: true}).then(async()=>{
+   await saveApiData();
+   server.listen(PORT, () => {
+      console.log('Server raised in port: ' + PORT);
+   });
+ })
 server.use("/rickandmorty", router)
+
+module.exports= (server)
 
 
 
